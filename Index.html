@@ -1,15 +1,218 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pausa y Revisa: Por qué no darte de baja</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>
-        Welcome to my website
-    </h1>
-    Weeey, esto lo estoy modificando en la cosa esta del github
-    Avr, ahora lo del push
-</body>
-</html>
+
+    <!-- Header / Navegación -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-seedling"></i>
+                <span>Pausa & Recalibra</span>
+            </a>
+            <nav class="nav-links">
+                <a href="#razones">Razones</a>
+                <a href="#simulador">Evaluador</a>
+                <a href="#alternativas">Alternativas</a>
+            </nav>
+            <a href="#simulador" class="btn btn-primary btn-sm">Hacer Evaluación</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <span class="badge"><i class="fa-solid fa-heart-pulse"></i> Antes de firmar la renuncia</span>
+                    <h1 class="hero-title">No tomes una decisión <span class="highlight">permanente</span> por una crisis temporal.</h1>
+                    <p class="hero-description">
+                        Sentirse abrumado, reprobar una materia o dudar de tu vocación es parte de la experiencia universitaria. Te acompañamos a analizar tu situación con cabeza fría antes de tomar el camino definitivo.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#simulador" class="btn btn-primary"><i class="fa-solid fa-compass"></i> Evaluar mi Situación</a>
+                        <a href="#razones" class="btn btn-secondary"><i class="fa-solid fa-book-open"></i> Leer 4 Razones</a>
+                    </div>
+                </div>
+                <div class="hero-card">
+                    <div class="quote-card">
+                        <i class="fa-solid fa-quote-left quote-icon"></i>
+                        <p class="quote-text">"El fracaso no es lo opuesto al éxito, es parte del éxito. Un mal semestre no te define como profesional."</p>
+                        <div class="quote-author">
+                            <div class="avatar">🎓</div>
+                            <div>
+                                <strong>Perspectiva Académica</strong>
+                                <small>Comité de Orientación</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Razones / Cards -->
+        <section id="razones" class="section bg-light">
+            <div class="container">
+                <div class="section-header">
+                    <h2>4 Razones para reconsiderar la baja</h2>
+                    <p>Cosas que la mayoría de estudiantes descubren cuando superan la tormenta inicial.</p>
+                </div>
+
+                <div class="grid grid-4">
+                    <article class="card">
+                        <div class="card-icon icon-blue"><i class="fa-solid fa-brain"></i></div>
+                        <h3>Efecto Túnel Emocional</h3>
+                        <p>Cuando estás bajo estrés severo o agotamiento, tu cerebro sobredimensiona el dolor del presente e ignora los beneficios que tendrás a 3 años.</p>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-icon icon-emerald"><i class="fa-solid fa-shield-halved"></i></div>
+                        <h3>Resiliencia Profesional</h3>
+                        <p>El verdadero aprendizaje universitario no es solo memorizar teoría, sino aprender a resolver problemas difíciles y levantarte tras un obstáculo.</p>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-icon icon-amber"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                        <h3>El Peso del Tiempo</h3>
+                        <p>El tiempo pasará de todas formas. En 3 años tendrás 3 años más de edad, con o sin el título universitario en tus manos.</p>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-icon icon-purple"><i class="fa-solid fa-map-location-dot"></i></div>
+                        <h3>Mercado Flexible</h3>
+                        <p>Tu carrera no te encasilla. El título demuestra tu capacidad de terminar proyectos complejos, luego puedes pivotar a la rama que prefieras.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Simulador de Evaluación de Decisión -->
+        <section id="simulador" class="section">
+            <div class="container">
+                <div class="simulator-wrapper">
+                    <div class="simulator-header">
+                        <h2><i class="fa-solid fa-sliders"></i> Evaluador de Nivel de Crisis</h2>
+                        <p>Responde a tu estado actual para obtener una recomendación adaptada.</p>
+                    </div>
+
+                    <form id="eval-form" class="simulator-form" onsubmit="event.preventDefault(); calcularResultado();">
+                        <div class="form-group">
+                            <label for="estres">1. ¿Cuál es tu nivel de agotamiento físico y mental hoy? (1 a 10)</label>
+                            <input type="range" id="estres" min="1" max="10" value="7" class="slider" oninput="updateSliderVal('estres', 'val-estres')">
+                            <div class="slider-labels"><span>Bajo (1)</span> <span id="val-estres" class="badge-val">7</span> <span>Extremo (10)</span></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="motivo">2. ¿Cuál es el factor principal de tu frustración?</label>
+                            <select id="motivo" class="select-input">
+                                <option value="reprobado">Reprobé exámenes o materias difíciles</option>
+                                <option value="agotamiento">Agotamiento / Burnout acumulado</option>
+                                <option value="vocacion">Siento que la carrera no me apasiona</option>
+                                <option value="personal">Problemas personales o económicos</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-full"><i class="fa-solid fa-wand-magic-sparkles"></i> Analizar mi Situación</button>
+                    </form>
+
+                    <!-- Resultado del análisis -->
+                    <div id="resultado-simulador" class="result-box hidden">
+                        <div class="result-badge" id="res-badge">Recomendación</div>
+                        <h3 id="res-titulo">Analizando...</h3>
+                        <p id="res-desc">Texto de recomendación...</p>
+                        <div class="result-action" id="res-action">
+                            <!-- Inserción dinámica por JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Alternativas intermedias -->
+        <section id="alternativas" class="section bg-light">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Opciones intermedias antes de abandonar</h2>
+                    <p>No todo es "seguir sufriendo igual" o "darme de baja". Hay matices.</p>
+                </div>
+
+                <div class="grid grid-3">
+                    <div class="alt-card">
+                        <span class="step-num">01</span>
+                        <h3>Baja Parcial de Materias</h3>
+                        <p>Da de baja únicamente esa asignatura que te consume el 80% del tiempo. Reduce la carga para salvar las demás.</p>
+                    </div>
+
+                    <div class="alt-card">
+                        <span class="step-num">02</span>
+                        <h3>Semestre Sabático Oficial</h3>
+                        <p>Solicita una reserva de matrícula temporal por un semestre. Trabaja, descansa y recupera claridad sin perder tu avance.</p>
+                    </div>
+
+                    <div class="alt-card">
+                        <span class="step-num">03</span>
+                        <h3>Tutorías y Apoyo Estudiantil</h3>
+                        <p>Acude a los departamentos de orientación psicológica y tutorías académicas. Existen convenios y apoyos que ignoras.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>© 2026 Pausa & Recalibra — Diseñado para acompañar tus decisiones más importantes con serenidad.</p>
+        </div>
+    </footer>
+
+    <script>
+        function updateSliderVal(inputId, valId) {
+            document.getElementById(valId).innerText = document.getElementById(inputId).value;
+        }
+
+        function calcularResultado() {
+            const estres = parseInt(document.getElementById('estres').value);
+            const motivo = document.getElementById('motivo').value;
+
+            const resBox = document.getElementById('resultado-simulador');
+            const resBadge = document.getElementById('res-badge');
+            const resTitulo = document.getElementById('res-titulo');
+            const resDesc = document.getElementById('res-desc');
+            const resAction = document.getElementById('res-action');
+
+            resBox.classList.remove('hidden');
+
+            if (estres >= 8) {
+                resBadge.className = "result-badge badge-red";
+                resBadge.innerText = "Prioridad: Descanso Emocional urgente";
+                resTitulo.innerText = "Estás atravesando un estado de Burnout Agudo";
+                resDesc.innerText = "Tus niveles de estrés alteran tu juicio racional. No des de baja la carrera hoy. Toma un descanso de 72 horas, desconéctate de los libros y habla con un tutor universitario antes de cualquier trámite.";
+                resAction.innerHTML = `<strong>Acción sugerida:</strong> Aplica la regla de congelamiento de decisiones por 3 días.`;
+            } else if (motivo === 'reprobado') {
+                resBadge.className = "result-badge badge-amber";
+                resBadge.innerText = "Diagnóstico: Tropiezo Académico Recuperable";
+                resTitulo.innerText = "Reprobar materias es un costo de aprendizaje";
+                resDesc.innerText = "El 68% de los graduados reprobó al menos una asignatura. Darte de baja por un examen reprobado es una reacción desmedida frente a un trámite de regularización que puedes solucionar el siguiente ciclo.";
+                resAction.innerHTML = `<strong>Acción sugerida:</strong> Evalúa dar de baja solo la materia conflictiva o cursarla en periodo extraordinario.`;
+            } else if (motivo === 'vocacion') {
+                resBadge.className = "result-badge badge-blue";
+                resBadge.innerText = "Diagnóstico: Crisis de Propósito";
+                resTitulo.innerText = "La profesión real no se parece a las clases teóricas";
+                resDesc.innerText = "Es común aburrirse en las materias generales iniciales. Antes de abandonar, entrevista a 2 profesionales en ejercicio para conocer cómo es el trabajo real en el campo laboral.";
+                resAction.innerHTML = `<strong>Acción sugerida:</strong> Charla con un egresado de tu facultad esta misma semana.`;
+            } else {
+                resBadge.className = "result-badge badge-green";
+                resBadge.innerText = "Diagnóstico: Reajuste de Estrategia";
+                resTitulo.innerText = "Necesitas reducir presión, no renunciar";
+                resDesc.innerText = "Tus razones son válidas, pero existen alternativas intermedias como ajustar tu carga de materias por semestre para tener tiempo libre o laboral.";
+                resAction.innerHTML = `<strong>Acción sugerida:</strong> Consulta con coordinación para planificar una carga académica reducida.`;
+            }
+        }
